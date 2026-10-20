@@ -59,10 +59,10 @@ class TokenAuthentication implements AuthenticatorInterface
             $response = $this->httpClient->request('POST', 'https://accounts.spotify.com/api/token', [
                 'headers' => [
                     'Authorization' => 'Basic ' . $credentials,
-                    'Content-Type' => 'application/x-www-form-urlencoded',
+                    'Content-Type'  => 'application/x-www-form-urlencoded',
                 ],
                 'form_params' => [
-                    'grant_type' => 'refresh_token',
+                    'grant_type'    => 'refresh_token',
                     'refresh_token' => $this->refreshToken,
                 ],
             ]);
@@ -74,17 +74,16 @@ class TokenAuthentication implements AuthenticatorInterface
             }
 
             $this->accessToken = $data['access_token'];
-            // Buffer expiration time by 60 seconds to prevent edge-case failures
             $this->expiresAt = time() + ($data['expires_in'] ?? 3600) - 60;
 
-            // Spotify may occasionally return a new refresh token; store it if present
             if (isset($data['refresh_token'])) {
                 $this->refreshToken = $data['refresh_token'];
             }
 
             return $this->accessToken;
+
         } catch (\Throwable $e) {
-            throw new RuntimeException("Spotify Token Refresh Error: " . $e->getMessage(), 0, $e);
+            throw new RuntimeException("Spotify Authentication Error: " . $e->getMessage(), $e->getCode(), $e);
         }
     }
 
