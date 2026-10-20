@@ -1,5 +1,4 @@
- <?php
-
+<?php
 namespace SpotifyMusicApi\Auth;
 
     interface AuthenticatorInterface
