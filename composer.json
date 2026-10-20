@@ -1,5 +1,5 @@
 {
-  "name": "t1m1/spotify-music-api",
+  "name": "oluwatimilehin/spotify-music-api",
   "description": "A PHP SDK wrapper for the Spotify Web API",
   "type": "library",
   "license": "MIT",

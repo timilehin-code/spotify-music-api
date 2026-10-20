@@ -16,7 +16,7 @@ A very simple and easy-to-use PHP package to connect to the Spotify API. This pa
 Run this command in your terminal (inside your project folder) to install the package:
 
 ```bash
-composer require t1m1/spotify-music-api
+composer require oluwatimilehin/spotify-music-api
 ```
 
 ---
